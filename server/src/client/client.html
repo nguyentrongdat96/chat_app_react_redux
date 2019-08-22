@@ -1,0 +1,163 @@
+<html>
+
+<head>
+    <style>
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script>
+        //let io=require('socket.io-client');
+        let socket;
+        let port = 1336; //// hard code 
+        let userid;
+        let message;
+        let messagestatus;
+        let useronline = {};
+        let userlistselect;
+        let chatroom_message_div;
+        let toUser = "";
+
+        // Message constants
+        const IM = 'im';
+        const IDENT = 'identify';
+        const CONNECT = 'connect';
+        const DISCONNECT = 'disconnect';
+        const CONNECT_ERR = 'connect_error';
+        const RECONNECT_ERR = 'reconnect_error';
+        const UPDATE_CLIENT = 'update_client';
+        const MESSSAGE = 'message';
+        const GET_USER_LIST = 'getuserlist';
+        const BROADCAST = 'broadcast';
+        const UPDATE_USER_LIST = 'updateuserlist'
+
+        function init() {
+            userlistselect = document.getElementById("user_list");
+            chatroom_message_div = document.getElementById("chatroom_message");
+        }
+
+        function connect() {
+            alert("connecting");
+            host = `http://localhost:${port}`;
+            socket = io.connect(host);
+
+            socket.on(CONNECT, onConnection);
+            socket.on(DISCONNECT, onDisconnect);
+            socket.on(BROADCAST, onBroadcast);
+
+            function onConnection() {
+                console.log("Tại sao lặp lại nhiều vậy");
+                let userid = document.getElementById('userID').value;
+                if (userid === "") {
+                    alert("Nhập tên để vào phòng chat");
+                    return;
+                } else {
+                    userid = $("#userID").val();
+                    $("#userID").attr("readonly");
+                    sendIden(userid);
+                    getUserList(userid);
+                }
+                socket.on(GET_USER_LIST, onGetUserList);
+                socket.on(MESSSAGE, onMessage);
+                socket.on(UPDATE_USER_LIST, onUpdateUserList);
+
+                function onGetUserList(userlist) {
+                    console.log(userlist);
+                    if (userlist) {
+                        let selectlist = "";
+                        userlist.forEach(x => {
+                            selectlist += `<option value='${x}'>${x}</option>`;
+                        });
+                        console.log(selectlist);
+                        $("#user_list").html("");
+                        $("#user_list").append(selectlist);
+                        
+                    }
+                }
+
+                function onMessage(message) {
+                    console.log("Receiving message");
+                    if (message.from == userid) {
+                        $('#chatroom_message').append(`<p style="color:blue;">[Sent] ${message.to} : ${message.msg}</p>`);
+                    } else {
+                        $('#chatroom_message').append(`<p style="color:purple;">[From] ${message.from} : ${message.msg}</p>`);
+                    }
+                }
+
+                function onUpdateUserList(userlist) {
+                    $("#user_list").html("");
+                    userlist.forEach(x => {
+                        Object.keys(x).forEach(y => {
+                            if (x[y] != userid) {
+                                $("#user_list").append(`<option value='${x[y]}'>${x[y]}</option>`);
+                            }
+                        });
+                    });
+                    
+                }
+
+
+            }
+
+
+            function onDisconnect() {
+
+            }
+
+            function onBroadcast(message) {
+                $('#chatroom_message').append(`<p style="color:red">${message}</p>`);
+            }
+
+
+
+        }
+
+        function sendMessage() {
+            
+            let toUser = ($("#user_list").val());
+            if (toUser) {
+                let msg = $("#msg").val();
+                let message = { 'msg': msg, 'from': $("#userID").val(), 'to': toUser };
+                socket.emit(MESSSAGE, message);
+            } else {
+                alert("Bạn chưa chọn user cần gửi hoặc hiện không có user nào đang online");
+            }
+        }
+
+        function getUserList(userid) {
+            socket.emit(GET_USER_LIST, userid);
+        }
+
+        function sendIden(userid) {
+            socket.emit(IDENT, userid);
+        }
+
+        window.addEventListener("load", init, false);
+
+
+    </script>
+</head>
+
+<body>
+    <div id="warper">
+        <div id="message_status">
+            <p color="red" style="font-style: 'bold';font-size: 35px"></p>
+        </div>
+        <div id="userinfo">
+            <div><input id="userID" type="text" name="userID"></div>
+            <div><button type="button" onclick="connect()"> Kết nối</button></div>
+        </div>
+
+        <div id="message_section">
+            <div><select id="user_list"></select></div>
+            <div><input id="msg" type="text" name="message"></div>
+            <div><button type="button" onclick="sendMessage()">Gửi</button></div>
+        </div>
+        <div id="chatroom_message"></div>
+    </div>
+
+    <!-- <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+</body>
+
+</html>
