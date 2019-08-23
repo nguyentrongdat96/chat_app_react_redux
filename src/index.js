@@ -5,7 +5,8 @@ import './index.css';
 //import FirstComponent from './firstcomponent';
 import Chat from './containers/Chat';
 //import * as serviceWorker from './serviceWorker';
-//import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
+import store from './store/index';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -16,9 +17,11 @@ import Chat from './containers/Chat';
 
 function render() {
     ReactDOM.render(
-       //<FirstComponent></FirstComponent>,
-       <Chat></Chat>,
-       document.getElementById('root')
+        //<FirstComponent></FirstComponent>,
+        <Provider store={store}>
+            <Chat></Chat>
+        </Provider>,
+        document.getElementById('root')
     )
 }
 render();

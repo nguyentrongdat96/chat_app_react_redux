@@ -1,0 +1,31 @@
+#chat-header{
+    height: 70px;
+    width: 100%;
+    position: relative;
+
+    #user-id-input{
+        left: 0px;
+        top: 0px;
+        position: absolute;
+    }
+
+    #user-picker{
+        left: 0px;
+        top: 30px;
+        position: absolute;
+    }
+
+    #connect-button-container{
+        width: 70px;
+        height: 40px;
+        left: 400px;
+        top: 10px;
+        position: absolute;
+    }
+
+    #connect-status{
+        top: 55px;
+        left: 350px;
+        position: absolute;
+    }
+}
