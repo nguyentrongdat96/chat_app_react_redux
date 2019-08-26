@@ -7,7 +7,6 @@ class MessageInput extends Component {
             <div id="message-input-container">
                 <label>Tin nhắn : </label>
                 <input type="text" placeholder="Nội dung chat" id="message-input" ></input>
-                <button id="send-btn" >Gửi</button>
             </div>
         )
     }
