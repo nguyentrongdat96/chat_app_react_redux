@@ -33,11 +33,10 @@ export const messageReceived = message => {
 };
 
 // The server has updated us with a list of users
-export const clientUpdateReceived = (otherUsers, recipientLost) => {
+export const clientUpdateReceived = (otherUsers) => {
     return {
         type: actionTypes.CLIENT_UPDATE_RECEIVED,
-        otherUsers: otherUsers,
-        recipientLost: recipientLost
+        otherUsers: otherUsers
     };
 };
 

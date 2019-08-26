@@ -28,13 +28,14 @@ class ChatHeader extends Component {
     }
 
     render() {
+        const tempArr=['Select an user'];
         return (
             <div id="chat-header">
                 <div id="user-id-input">
                     <UserID onUserChange={this.onUserChange}></UserID>
                 </div>
                 <div id="user-picker">
-                    <UserPicker></UserPicker>
+                    <UserPicker onlineUsers={this.props.onlineUsers.length !== 0 ? this.props.onlineUsers: tempArr}></UserPicker>
                 </div>
                 <div id="connect-button-container">
                     <ConnectButton onClick={this.onConnectionBtnClick}></ConnectButton>
@@ -50,7 +51,8 @@ class ChatHeader extends Component {
 // map required state to props
 const mapStatetoToProps=(state)=>({
     socketStatus:state.socketState.status,
-    connectStatus:state.statusState.status
+    connectStatus:state.statusState.status,
+    onlineUsers:state.messageState.users
 })
 
 // map required func to props 

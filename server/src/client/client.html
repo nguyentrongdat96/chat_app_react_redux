@@ -46,7 +46,7 @@
             socket.on(BROADCAST, onBroadcast);
 
             function onConnection() {
-                console.log("Tại sao lặp lại nhiều vậy");
+                console.log("CONNECTED");
                 let userid = document.getElementById('userID').value;
                 if (userid === "") {
                     alert("Nhập tên để vào phòng chat");
@@ -55,25 +55,25 @@
                     userid = $("#userID").val();
                     $("#userID").attr("readonly");
                     sendIden(userid);
-                    getUserList(userid);
+                    //getUserList(userid);
                 }
-                socket.on(GET_USER_LIST, onGetUserList);
+                //socket.on(GET_USER_LIST, onGetUserList);
                 socket.on(MESSSAGE, onMessage);
                 socket.on(UPDATE_USER_LIST, onUpdateUserList);
 
-                function onGetUserList(userlist) {
-                    console.log(userlist);
-                    if (userlist) {
-                        let selectlist = "";
-                        userlist.forEach(x => {
-                            selectlist += `<option value='${x}'>${x}</option>`;
-                        });
-                        console.log(selectlist);
-                        $("#user_list").html("");
-                        $("#user_list").append(selectlist);
+                // function onGetUserList(userlist) {
+                //     console.log(userlist);
+                //     if (userlist) {
+                //         let selectlist = "";
+                //         userlist.forEach(x => {
+                //             selectlist += `<option value='${x}'>${x}</option>`;
+                //         });
+                //         console.log(selectlist);
+                //         $("#user_list").html("");
+                //         $("#user_list").append(selectlist);
                         
-                    }
-                }
+                //     }
+                // }
 
                 function onMessage(message) {
                     console.log("Receiving message");

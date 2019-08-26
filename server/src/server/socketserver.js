@@ -131,7 +131,7 @@ function onConnection(ws) {
     function reportNewUser(userID) {
         // Báo cáo cho mấy thằng user là có thắng mới connect
         ws.broadcast.emit(connectStatus.BROADCAST, userID + ' Connected to server');
-        updateUserList(userID);
+        updateUserList();
 
         // Hiển thị lại thông tin của thắng hiện vừa connect xem nó có mấy connection 
         let userConnections = users[userID];
@@ -141,16 +141,14 @@ function onConnection(ws) {
 
 
 // update lại danh sách các user online cho mấy thằng user khác
-function updateUserList(userID) {
+function updateUserList() {
     console.log("Update Lại danh sách user online cho các thanh niên còn lại ")
     // Trong danh sách userlist thì key và value là như nhau và nó có giá trị là userID
     Object.keys(userlist).forEach(key => {
-        if (userID != key) {
             let userConnections = users[key];
             userConnections.forEach(x => {
                 x.emit(connectStatus.UPDATE_USER_LIST, [userlist]);
             });
-        }
     });
     // Object.keys(users).forEach(x=>{
     //     if(x!=userID){

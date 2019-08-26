@@ -1,8 +1,6 @@
 // ACTIONS
 import actionTypes from '../actions/actionTypes';
 
-
-
 // Initial state
 const INITIAL_STATE = {
     user: undefined,
@@ -16,12 +14,10 @@ const INITIAL_STATE = {
 
 // Message Reducer
 function messageReducer(state = INITIAL_STATE, action) {
-    console.log("helooooooooooooooo");
     let reduced;
     switch (action.type)
     {
        case actionTypes.USER_CHANGED:
-            console.log("lấy từ thằng action",action.user);
             reduced = Object.assign({},
                 state, {user: action.user}
             );
@@ -67,13 +63,7 @@ function messageReducer(state = INITIAL_STATE, action) {
 
         case actionTypes.CLIENT_UPDATE_RECEIVED:
             reduced = Object.assign({},
-                state, {users: action.otherUsers, recipientLost: action.recipientLost},
-                (action.recipientLost)
-                    ? {recipient: "", lostRecipient: state.recipient}
-                    : {},
-                (!action.recipientLost && !!state.lostRecipient)
-                    ? {recipient: state.lostRecipient}
-                    : {}
+                state, {users: action.otherUsers}
             );
             break;
 
