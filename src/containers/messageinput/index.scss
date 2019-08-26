@@ -1,4 +1,10 @@
+@import "../../constant/style/common.scss";
+@import "../../constant/style/reset.scss";
+
 #message-input {
-    height: 50px;
+    margin-top: 14px;
+    display: flex;
+    align-items: baseline;
+    height: 20%;
     width: 100%;
 }

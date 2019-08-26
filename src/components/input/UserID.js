@@ -7,8 +7,8 @@ class UserID extends Component {
         const {onUserChange}=this.props;
         return (
             <div>
-                <label>Tên hiển thị : </label>
-                <input type="text" placeholder="Vui lòng nhập tên để chat" onChange={onUserChange} ></input>
+                <label id='displayname'>Tên hiển thị </label>
+                <input id='displayname-input' type="text" placeholder="Nhập tên bạn" onChange={onUserChange} ></input>
             </div>
         )
     }

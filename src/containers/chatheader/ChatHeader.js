@@ -28,20 +28,21 @@ class ChatHeader extends Component {
     }
 
     render() {
-        const tempArr=['Select an user'];
+        // const tempArr=['Chọn người nhận'];
         return (
             <div id="chat-header">
                 <div id="user-id-input">
                     <UserID onUserChange={this.onUserChange}></UserID>
                 </div>
                 <div id="user-picker">
-                    <UserPicker onlineUsers={this.props.onlineUsers.length !== 0 ? this.props.onlineUsers: tempArr}></UserPicker>
+                    {/* <UserPicker onlineUsers={this.props.onlineUsers.length !== 0 ? this.props.onlineUsers: tempArr}></UserPicker> */}
+                    <UserPicker onlineUsers={this.props.onlineUsers}></UserPicker>
                 </div>
                 <div id="connect-button-container">
                     <ConnectButton onClick={this.onConnectionBtnClick}></ConnectButton>
                 </div>
                 <div id="connect-status">
-                    Status: {this.props.connectStatus}
+                    {this.props.connectStatus}
                 </div>
             </div>
         )

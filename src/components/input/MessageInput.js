@@ -5,8 +5,7 @@ class MessageInput extends Component {
     render() {
         return (
             <div id="message-input-container">
-                <label>Tin nhắn : </label>
-                <input type="text" placeholder="Nội dung chat" id="message-input" ></input>
+                <input type="text" placeholder="Nhập tin nhắn..." id="message" ></input>
             </div>
         )
     }

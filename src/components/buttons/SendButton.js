@@ -6,9 +6,7 @@ class SendButton extends Component{
     render(){
         const {onClick}=this.props;
         return(
-            <div id='send-button'>
-                <button onClick={onClick}> Gửi</button>
-            </div>
+            <button id='send-button' onClick={onClick}> Gửi</button>
         )
     }
 }

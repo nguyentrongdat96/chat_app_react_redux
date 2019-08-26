@@ -1,4 +1,4 @@
-import * as Protocols from '../../../contant/Protocols.js';
+import * as Protocols from '../../../constant/Protocols.js';
 import io from 'socket.io-client';
 
 export default class Socket {

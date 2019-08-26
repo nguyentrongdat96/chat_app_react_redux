@@ -27,7 +27,7 @@ function messageReducer(state = INITIAL_STATE, action) {
             reduced = Object.assign({},
                 state,
                 {recipient: action.recipient},
-                (action.recipient === "") ? {outgoingMessage: ''} : {}
+                (action.recipient === "Chọn người nhận") ? {outgoingMessage: ''} : {}
             );
             break;
 

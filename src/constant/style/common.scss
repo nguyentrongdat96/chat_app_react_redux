@@ -1,0 +1,67 @@
+/* Setup basics CSS */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=vietnamese');
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+$font-family: 'Roboto', sans-serif;
+$dark-1: lighten(#1F2734, 2);
+$dark-2: lighten(#1A2129, 2);
+$dark-3: #13161B;
+$border-darker: #383C45;
+$border: #ced4da;
+$border-focus: #80bdff;
+$box-shadow: #d3e6fa;
+$white: #FFFFFF;
+$gray: #959CAC;
+$gray-darker: darken($gray, 35);
+$primary: #FFAC42;
+$red: #DD0574;
+$green: #00C087;
+$purple: #f0f;
+$blue: #6cf;
+$text-color: #848789;
+$input-border: #d3d7d9;
+$input-text-color: #cdcdcd;
+
+$font-size-small: 12px;
+$font-size-regular: 12px;
+$font-size-medium: 14px;
+$font-size-big: 16px;
+
+html {
+  font-size: 62.5%; /* 1rem = 10px 
+    1rem = 16px; 
+  */
+}
+body {
+  font-family: $font-family;
+  line-height: 1; /* 1 == font-size*/
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+html * {
+  font-family: $font-family;
+}
+a {
+  text-decoration: underline;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+button {
+  cursor: pointer;
+}
+input,
+textarea,
+button {
+  outline: none;
+  box-shadow: none;
+}
