@@ -17,6 +17,4 @@ SendButton.propTypes={
     onClick:propTypes.func
 }
 
-
-
 export default SendButton;

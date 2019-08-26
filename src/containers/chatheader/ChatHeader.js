@@ -13,6 +13,7 @@ class ChatHeader extends Component {
         super(props);
         this.onConnectionBtnClick=this.onConnectionBtnClick.bind(this);
         this.onUserChange=this.onUserChange.bind(this);
+        this.onReceiverChange=this.onReceiverChange.bind(this);
     }
 
 
@@ -27,18 +28,27 @@ class ChatHeader extends Component {
         this.props.userChange(e.target.value);
     }
 
+    onReceiverChange(e){
+        this.props.receiverChange(e.target.value);
+    }
+
     render() {
-        const tempArr=['Select an user'];
+        const tempArr=[];
+        this.props.onlineUsers.forEach(x => {
+            tempArr.push(x);
+        });
         return (
             <div id="chat-header">
                 <div id="user-id-input">
-                    <UserID onUserChange={this.onUserChange}></UserID>
+                    <UserID onUserChange={this.onUserChange} disable={this.props.socketStatus} ></UserID>
                 </div>
                 <div id="user-picker">
-                    <UserPicker onlineUsers={this.props.onlineUsers.length !== 0 ? this.props.onlineUsers: tempArr}></UserPicker>
+                    {/* <UserPicker onlineUsers={this.props.onlineUsers.length !== 0 ? this.props.onlineUsers: tempArr} onChange={this.onReceiverChange}></UserPicker> */}
+                    {/* <UserPicker onlineUsers={tempArr} onChange={this.onReceiverChange}></UserPicker> */}
+                    <UserPicker onlineUsers={tempArr} onChange={this.onReceiverChange}></UserPicker>
                 </div>
                 <div id="connect-button-container">
-                    <ConnectButton onClick={this.onConnectionBtnClick}></ConnectButton>
+                    <ConnectButton onClick={this.onConnectionBtnClick} disable={this.props.socketStatus}></ConnectButton>
                 </div>
                 <div id="connect-status">
                     Status: {this.props.connectStatus}
@@ -58,7 +68,9 @@ const mapStatetoToProps=(state)=>({
 // map required func to props 
 const mapDispatchToProps=(dispatch)=>({
     connectSocket:()=>dispatch(socketActions.socketConnect()),
-    userChange:(userid)=>dispatch(Actions.userChanged(userid))
+    userChange:(userid)=>dispatch(Actions.userChanged(userid)),
+    receiverChange:(receiver)=>dispatch(Actions.recipientChanged(receiver))
+    
 })
 
 export default connect(mapStatetoToProps,mapDispatchToProps)(ChatHeader)

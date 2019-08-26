@@ -11,6 +11,7 @@ const actionTypes = Object.freeze({
     CLIENT_UPDATE_RECEIVED: 'message/client-update-received',
     SEND_MESSAGE: 'message/send-message',
     ABANDON_CHAT: 'message/abandon-chat',
+    BROADCAST_RECEIVE:'BROADCAST_RECEIVE',
 
     //socket action
     CONNECTION_CHANGED: 'socket/connection-changed',

@@ -3,24 +3,25 @@ import './ConnectButton.scss';
 import propTypes from 'prop-types';
 
 class ConnectButton extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            text:"Connect"
+        this.state = {
+            text: "Connect"
         }
     }
     render() {
         const {
-            onClick
+            onClick,disable
         } = this.props;
         return (
-            <button type="button" id="connect-button" onClick={onClick}> {this.state.text}</button>
+            <button type="button" id="connect-button" onClick={onClick} disabled={disable}> {this.state.text}</button>
         )
     }
 }
 
 ConnectButton.propTypes = {
-    onClick: propTypes.func
+    onClick: propTypes.func,
+    disable:propTypes.bool
 }
 
 

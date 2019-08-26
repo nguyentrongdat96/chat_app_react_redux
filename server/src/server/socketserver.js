@@ -119,7 +119,7 @@ function onConnection(ws) {
 
         // Vì một user có thể có nhiều kết nối nên  phải update lại tất cả các kết nối của user cũng hiển thị tin nhắn 
         senderConnections = users[message.from];
-        if (senderConnections) { // Cái đoạn này khó hiểu vì thằng sender vốn phải kết nối thì mới có thể gửi được message , có thể trong trường hợp nó gửi xong nó disconnect luôn ở trang hiện tại nên phải kiển tra
+        if (senderConnections) { 
             console.log(`Sender ${message.from} có ${senderConnections.length} kết nối`);
             console.log("emitting sender");
             senderConnections.forEach(connection => {

@@ -2,7 +2,8 @@ import * as Protocols from '../../../contant/Protocols.js';
 import io from 'socket.io-client';
 
 export default class Socket {
-    constructor(onChange, onMessage, onUpdateUserList) {
+    constructor(onChange, onMessage, onUpdateUserList,onBroadCast) {
+        this.onBroadCast=onBroadCast;
         this.onChange = onChange;
         this.onMessage = onMessage;
         this.onUpdateUserList = onUpdateUserList;
@@ -31,6 +32,7 @@ export default class Socket {
         this.sendIden();
         this.socket.on(Protocols.MESSSAGE, this.onMessage);
         this.socket.on(Protocols.UPDATE_USER_LIST, this.onUpdateUserList);
+        this.socket.on(Protocols.BROADCAST,this.onBroadCast);
         // Hình như ông này thay đổi cái connect status :))
         this.onChange(true);
     }
@@ -39,10 +41,12 @@ export default class Socket {
 
     onDisconnect = () => {
         this.onChange(false);
-        
     }
     
-    sendMessage = (message) => this.socket.emit(Protocols.MESSSAGE, message);
+    sendMessage = (message) => {
+        console.log("MESSAGE SENT ",message);
+        this.socket.emit(Protocols.MESSSAGE, message);
+    }
 
     requestUserList = (userid) => this.socket.emit(Protocols.UPDATE_USER_LIST, userid);
 

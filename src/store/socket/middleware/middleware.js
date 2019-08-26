@@ -19,7 +19,7 @@ const socketMiddleware = store => {
 
     // Có tin nhắn được gửi đến ở kênh message
     const onMessage = (message) => {
-
+        store.dispatch(actions.messageReceived(message));
     }
 
     const onUpdateUserList = (message) => {
@@ -48,10 +48,16 @@ const socketMiddleware = store => {
 
     }
 
+    const onBroadCast=(message)=>{
+        console.log("BROADCAST MESSAGE",message);
+        store.dispatch(actions.broadCastReceive(message));
+    }
+
     const socket = new Socket(
         onConnectionStatusChange,
         onMessage,
-        onUpdateUserList
+        onUpdateUserList,
+        onBroadCast
     )
 
 
@@ -62,7 +68,7 @@ const socketMiddleware = store => {
         let messageState = store.getState().messageState;
         let socketState = store.getState().socketState;
 
-        console.log("message state", messageState);
+        //console.log("message state", messageState);
         switch (action.type) {
             case actionTypes.CONNECT_SOCKET:
                 console.log("Lấy user từ middleware:", messageState.user);

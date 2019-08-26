@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
 // The user has changed
 export const userChanged = user => {
-    console.log("Action của thằng message",user);
+    console.log("Action của thằng message", user);
     return {
         type: actionTypes.USER_CHANGED,
         user: user
@@ -42,6 +42,7 @@ export const clientUpdateReceived = (otherUsers) => {
 
 // Send an instant message
 export const sendMessage = message => {
+    console.log("Message sent: ", message);
     return {
         type: actionTypes.SEND_MESSAGE,
         message: message
@@ -54,6 +55,14 @@ export const messageSent = () => {
         type: actionTypes.MESSAGE_SENT
     };
 };
+
+export const broadCastReceive = message => {
+    return {
+        type: actionTypes.BROADCAST_RECEIVE,
+        message:message
+    }
+}
+
 
 
 export const abandonChat = () => ({ type: actionTypes.ABANDON_CHAT });

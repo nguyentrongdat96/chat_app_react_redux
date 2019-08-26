@@ -6,4 +6,15 @@
     border-bottom: 2px solid black;
     overflow-y: auto;
     overflow-x: hidden; 
+    .sent{
+        color: blue;
+    }
+    
+    .receive{
+        color: purple;
+    }
+
+    .broadcast{
+        color:red;
+    }
 }
