@@ -12,6 +12,7 @@ export const connectionChanged = isConnected => {
 
 export const socketConnect=(userid)=>{
     return {
-        type:actionTypes.CONNECT_SOCKET
+        type:actionTypes.CONNECT_SOCKET,
+        status:true
     }
 }

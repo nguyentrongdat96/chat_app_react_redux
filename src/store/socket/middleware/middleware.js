@@ -62,7 +62,7 @@ const socketMiddleware = store => {
 
 
 
-    // Đoạn dưới này sẽ chạy với mỗi action dispatch (có lỗi ở đây => nhớ return lại cái exit(action) để nó không bị chặn)
+    // Đoạn dưới này sẽ chạy với mỗi action dispatch 
     return exit => action => {
 
         let messageState = store.getState().messageState;

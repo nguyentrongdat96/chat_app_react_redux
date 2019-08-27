@@ -23,7 +23,8 @@ class MessageInput extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        if (this.props.connectStatus && this.props.receiver !== "" && this.props.receiver !== "Select an user") {
+        
+        if ( this.props.connectStatus && this.props.receiver !== "" && this.props.receiver !== "Select an user") {
             this.props.sendMessage(this.props.message);
         }
 

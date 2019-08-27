@@ -1,21 +1,26 @@
 
 import actionTypes from '../../actions/actionTypes';
 
-const initialState={
-    status:false,
-    port:1336
+const initialState = {
+    status: false,
+    port: 1336
 }
 
-function socketReducer(state=initialState,action){
+function socketReducer(state = initialState, action) {
     let reduced;
-    switch(action.type){
+    switch (action.type) {
         case actionTypes.CONNECT_SOCKET:
-            reduced=Object.assign({},state,{
-               status:String(action.status) 
+            reduced = Object.assign({}, state, {
+                status: action.status
+            });
+            break;
+        case actionTypes.CONNECTION_CHANGED:
+            reduced = Object.assign({}, state, {
+                status: action.connected
             });
             break;
         default:
-            reduced=state;
+            reduced = state;
     }
     return reduced;
 }

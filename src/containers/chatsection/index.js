@@ -14,16 +14,16 @@ class ChatSection extends Component {
         const messages = messageArr.map((msg, index) => {
             //return <div key={index} className="sent" >{msg}</div>
             if (msg.indexOf("[Sent]") !== -1) {
-                return <div key={msg} className="sent" >{msg}</div>
+                return <div key={index} className="sent" >{msg}</div>
             } else 
             if (msg.indexOf("[Receive]") !== -1) {
-                return <div key={msg} className="receive" >{msg}</div>
+                return <div key={index} className="receive" >{msg}</div>
             } else {
-                return <div key={msg} className="broadcast" >{msg}</div>
+                return <div key={index} className="broadcast" >{msg}</div>
             }
 
         });
-        console.log("HERE IS THE MESSAGE POOL", this.props.messagePool);
+        //console.log("HERE IS THE MESSAGE POOL", this.props.messagePool);
         return (
             <div id="chat-content">
                 <div>WellCome to Chat App Excample</div>

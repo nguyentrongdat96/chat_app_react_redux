@@ -13,7 +13,7 @@ export default class Socket {
     }
 
 
-    // Thằng nào đó nhấn vào nút connect
+    // Sự kiện nhấn nút connect
     connect = (userid) => {
         console.log("User name ở đây",userid);
         this.userid = userid;
@@ -33,7 +33,7 @@ export default class Socket {
         this.socket.on(Protocols.MESSSAGE, this.onMessage);
         this.socket.on(Protocols.UPDATE_USER_LIST, this.onUpdateUserList);
         this.socket.on(Protocols.BROADCAST,this.onBroadCast);
-        // Hình như ông này thay đổi cái connect status :))
+        //  Ông này thay đổi cái connect status :))
         this.onChange(true);
     }
 
