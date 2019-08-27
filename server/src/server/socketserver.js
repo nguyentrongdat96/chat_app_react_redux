@@ -1,5 +1,5 @@
 
-const port = 1336;
+const port = process.env.PORT || 1336;
 const wss = require('socket.io')(port);
 const connectStatus = require('./common.js').CONNECTION_STATUS;
 

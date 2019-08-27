@@ -18,7 +18,7 @@ export default class Socket {
         console.log("User name ở đây",userid);
         this.userid = userid;
 
-        const host = `chat-example-react.herokuapp.com:${this.port}`;
+        const host = `http://localhost:${this.port}`;
         this.socket = io.connect(host);
 
         /// listener
